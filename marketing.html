@@ -15,27 +15,74 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
             color: #333;
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 40px;
             margin-top: 40px;
             margin-bottom: 40px;
+            animation: slideUp 0.6s ease-out;
         }
 
         .hero {
             text-align: center;
-            padding: 40px 0;
-            margin-bottom: 50px;
+            padding: 50px 0;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
         }
 
         .hero h1 {
@@ -44,27 +91,296 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-size: 3.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 700;
+            letter-spacing: -1px;
+            animation: float 3s ease-in-out infinite;
         }
 
         .hero .tagline {
             font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
             font-weight: 600;
         }
 
         .hero .description {
             color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 600px;
+            font-size: 1.15rem;
+            margin-bottom: 35px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 45px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .section-title {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .feature-card:nth-child(2) .feature-icon { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) .feature-icon { animation-delay: 0.4s; }
+        .feature-card:nth-child(4) .feature-icon { animation-delay: 0.6s; }
+        .feature-card:nth-child(5) .feature-icon { animation-delay: 0.8s; }
+        .feature-card:nth-child(6) .feature-icon { animation-delay: 1s; }
+
+        .feature-card h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            color: #555;
+            font-size: 1.05rem;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+        }
+
+        .benefit-item::before {
+            content: "✅";
+            margin-right: 15px;
+            font-size: 1.3rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .platforms-section {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8fb 100%);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.1);
+        }
+
+        .platforms-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+
+        .platform-item {
+            text-align: center;
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .platform-item:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .platform-item:nth-child(2) .platform-icon { animation-delay: 0.3s; }
+        .platform-item:nth-child(3) .platform-icon { animation-delay: 0.6s; }
+
+        .platform-item span {
+            display: block;
+            color: #555;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border-radius: 15px;
+            border: 2px solid #e8edff;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border-radius: 20px;
+        }
+
+        .btn-secondary {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -73,160 +389,61 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .section-title {
-            text-align: center;
-            color: #667eea;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        .feature-card {
-            border: 2px solid #f0f0f0;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .benefits-section {
-            background: #f5f5f5;
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 50px;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            color: #555;
-            font-size: 1rem;
-        }
-
-        .benefit-item::before {
-            content: "✅";
-            margin-right: 12px;
-            font-size: 1.2rem;
-        }
-
-        .platforms-section {
-            background: #e8f4f8;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .platforms-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-        }
-
-        .platform-item {
-            text-align: center;
-        }
-
-        .platform-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .platform-item span {
-            display: block;
-            color: #555;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .btn-secondary {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        .btn-secondary:hover::before {
+            width: 400px;
+            height: 400px;
         }
 
         .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
         }
 
         footer {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #f0f0f0;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
             color: #666;
         }
 
         footer p {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
         }
 
         footer a {
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 0 5px;
         }
 
         footer a:hover {
             color: #764ba2;
+            background: #f0f0f0;
         }
 
         @media (min-width: 768px) {
@@ -249,6 +466,10 @@
             .benefits-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .stats-section {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 767px) {
@@ -260,11 +481,12 @@
                 padding: 25px;
                 margin-top: 20px;
                 margin-bottom: 20px;
+                border-radius: 16px;
             }
 
             .hero {
-                padding: 20px 0;
-                margin-bottom: 30px;
+                padding: 30px 0;
+                margin-bottom: 40px;
             }
 
             .hero h1 {
@@ -280,21 +502,30 @@
             }
 
             .btn-primary {
-                padding: 15px 30px;
+                padding: 16px 35px;
                 font-size: 1.1rem;
             }
 
             .section-title {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
 
             .benefits-section,
             .platforms-section {
-                padding: 25px;
+                padding: 30px 20px;
             }
 
             .platforms-grid {
-                gap: 25px;
+                gap: 30px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cta-section {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -302,48 +533,64 @@
 <body>
     <div class="container">
         <section class="hero">
+            <div class="badge">⭐ Trusted by thousands of users</div>
             <h1>Ritual7</h1>
             <p class="tagline">Transform Your Fitness in Just 7 Minutes</p>
-            <p class="description">Science-backed HIIT workouts. No equipment needed. Beautiful design. Apple Watch support.</p>
+            <p class="description">Science-backed HIIT workouts. No equipment needed. Beautiful design. Apple Watch support. Join thousands who've transformed their fitness journey.</p>
             <a href="https://apps.apple.com/app/ritual7" class="btn-primary">📱 Download on App Store</a>
         </section>
+
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Minutes Per Workout</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Science-Backed Exercises</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Equipment Required</div>
+            </div>
+        </div>
 
         <h2 class="section-title">Features</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🏋️</div>
                 <h3>Science-Backed</h3>
-                <p>12 exercises based on research from the American College of Sports Medicine</p>
+                <p>12 exercises based on research from the American College of Sports Medicine. Proven effective for cardiovascular health and strength building.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
                 <h3>7 Minutes</h3>
-                <p>Complete full-body workout in just 7 minutes - perfect for busy schedules</p>
+                <p>Complete full-body workout in just 7 minutes - perfect for busy schedules. Maximum results in minimum time.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🏠</div>
                 <h3>No Equipment</h3>
-                <p>Work out anywhere - no gym membership or equipment needed</p>
+                <p>Work out anywhere - no gym membership or equipment needed. Your living room becomes your fitness studio.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">⌚</div>
                 <h3>Apple Watch</h3>
-                <p>Full workout experience on your wrist with seamless sync</p>
+                <p>Full workout experience on your wrist with seamless sync. Track your heart rate and calories in real-time.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Track Progress</h3>
-                <p>Beautiful analytics, streaks, and achievements to stay motivated</p>
+                <p>Beautiful analytics, streaks, and achievements to stay motivated. See your fitness journey unfold.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🎨</div>
                 <h3>Beautiful Design</h3>
-                <p>Modern, intuitive interface that makes working out enjoyable</p>
+                <p>Modern, intuitive interface that makes working out enjoyable. Every detail crafted for your experience.</p>
             </div>
         </div>
 
@@ -380,6 +627,8 @@
         </div>
 
         <div class="cta-section">
+            <h2 style="color: #667eea; margin-bottom: 20px; font-size: 1.8rem;">Ready to Start Your Journey?</h2>
+            <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem;">Join thousands of users transforming their fitness, one 7-minute workout at a time.</p>
             <a href="https://apps.apple.com/app/ritual7" class="btn-secondary">Start Your 7-Minute Journey Today</a>
         </div>
 
@@ -393,4 +642,3 @@
     </div>
 </body>
 </html>
-
