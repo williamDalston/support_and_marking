@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get support for Ritual7 Pomodoro Timer - Contact us for help, report issues, or get assistance with the focus app.">
+    <title>Ritual7 Support - Pomodoro Timer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #FF6347 0%, #FF8C69 50%, #FFA500 100%);
+            background-attachment: fixed;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #FF6347 0%, #FF8C69 100%);
+            border-radius: 2px;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #FF6347 0%, #FF8C69 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 99, 71, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 99, 71, 0.3);
+            border-color: #FF6347;
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .contact-card:nth-child(2) .contact-icon {
+            animation-delay: 1s;
+        }
+
+        .contact-card h2 {
+            color: #FF6347;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6347 0%, #FF8C69 100%);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 99, 71, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 99, 71, 0.5);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe6d9 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #FF6347;
+            box-shadow: 0 4px 15px rgba(255, 99, 71, 0.1);
+        }
+
+        .info-box h3 {
+            color: #FF6347;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box h3::before {
+            content: '💡';
+            font-size: 1.5rem;
+        }
+
+        .info-item {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #FF6347;
+            font-weight: bold;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item strong {
+            color: #FF6347;
+            font-weight: 600;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .faq-section h3 {
+            color: #FF6347;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .faq-item {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 3px solid #FF6347;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: #f5f5f5;
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            color: #FF6347;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .faq-answer {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .tips-box h3 {
+            color: #ff9800;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-box h3::before {
+            content: '✨';
+            font-size: 1.3rem;
+        }
+
+        .tips-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-box li {
+            color: #666;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .tips-box li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ff9800;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        footer a {
+            color: #FF6347;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        footer a:hover {
+            color: #FF8C69;
+            background: #fff5f0;
+            transform: translateX(-5px);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 60px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .contact-card {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 25px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .contact-card {
+                padding: 25px;
+            }
+
+            .contact-icon {
+                font-size: 3rem;
+            }
+
+            .info-box,
+            .tips-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ritual7 Support</h1>
+            <p class="subtitle">Need help? We're here for you. 🍅</p>
+        </header>
+
+        <section class="contact-section">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h2>Email Support</h2>
+                <p>Get help with any questions or issues about the Pomodoro timer. Our team is ready to assist you!</p>
+                <a href="mailto:support@ritual7.app?subject=Support%20Request" class="btn"><span>Contact Support</span></a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🐛</div>
+                <h2>Report an Issue</h2>
+                <p>Found a bug or have a suggestion? Help us make Ritual7 even better for your focus sessions!</p>
+                <a href="mailto:support@ritual7.app?subject=Bug%20Report" class="btn"><span>Report Issue</span></a>
+            </div>
+        </section>
+
+        <div class="info-box">
+            <h3>Support Information</h3>
+            <div class="info-item"><strong>Response Time:</strong> We typically respond within 24-48 hours</div>
+            <div class="info-item"><strong>App Version:</strong> 2.0 (Latest)</div>
+            <div class="info-item"><strong>Support Hours:</strong> Monday - Friday, 9 AM - 5 PM EST</div>
+        </div>
+
+        <div class="tips-box">
+            <h3>Quick Tips</h3>
+            <ul>
+                <li>Include your device model and iOS version when reporting issues</li>
+                <li>Check our FAQ section below for common Pomodoro timer questions</li>
+                <li>For faster response, include screenshots or screen recordings</li>
+                <li>Make sure your app is updated to the latest version (2.0)</li>
+                <li>Try restarting the timer if you experience any sync issues</li>
+            </ul>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I sync my Pomodoro sessions with Apple Watch?</div>
+                <div class="faq-answer">Open the Ritual7 app on your iPhone and make sure Bluetooth is enabled. The app will automatically sync with your Apple Watch when both devices are nearby. Your focus sessions will appear on both devices in real-time.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I customize my Pomodoro timer intervals?</div>
+                <div class="faq-answer">Yes! You can choose from preset options (Classic, Deep Work, Short Sprints) or create completely custom intervals. Go to Settings > Timer Presets to customize your focus and break durations.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">My progress isn't saving. What should I do?</div>
+                <div class="faq-answer">Make sure you have a stable internet connection and that you're signed in. Try closing and reopening the app, or restarting your device. If the issue persists, contact support with your device information.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do Pomodoro cycles work?</div>
+                <div class="faq-answer">After completing 4 focus sessions, you'll automatically get a longer break (typically 15-30 minutes depending on your preset). This helps prevent burnout and maintains productivity throughout your work day.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I use Ritual7 offline?</div>
+                <div class="faq-answer">Yes! The Pomodoro timer works completely offline. However, progress syncing and cloud backup require an internet connection. Your local data will sync once you're back online.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I change the sound and haptic feedback?</div>
+                <div class="faq-answer">Go to Settings > Sound & Haptics to customize notification sounds and vibration patterns. You can enable or disable sounds and haptics for focus sessions, breaks, and completions.</div>
+            </div>
+        </div>
+
+        <footer>
+            <a href="https://apps.apple.com/app/ritual7">← Back to Ritual7 App</a>
+        </footer>
+    </div>
+</body>
+</html>
+
